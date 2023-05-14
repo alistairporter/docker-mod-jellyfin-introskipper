@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-# Download Intro Skipper
-# gh -R ConfusedPolarBear/intro-skipper run download $(gh -R ConfusedPolarBear/intro-skipper run list --json name,number,databaseId --jq '[.[]|select(.name=="Publish container")][0].databaseId')
-tar -xvf jellyfin-web*/dist.tar.gz -C /usr/share/jellyfin/web
-# TODO: check if the dist directory needs to be stripped from the tar output with --strip-components=1
