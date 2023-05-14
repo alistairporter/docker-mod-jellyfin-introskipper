@@ -20,8 +20,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: alistairporter/docker-mods
-  MOD_NAME: jellyfin-introskipper
+  IMAGE_NAME: alistairporter/docker-mod-jellyfin-introskipper
 
 jobs:
   build-and-push-image:
@@ -47,12 +46,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.MOD_NAME }},prefix=
-            type=ref,event=tag
-            type=sha,prefix=${{ env.MOD_NAME }}-,format=short
+            type=sha
           flavor: |
             latest=true
-            prefix=${{ env.MOD_NAME }}-,onlatest=true
 
       - name: Build and push Docker image
         if: github.ref != 'refs/heads/test/ci'
