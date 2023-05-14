@@ -49,6 +49,12 @@ jobs:
             type=sha
           flavor: |
             latest=true
+            
+      - run: gh -R ConfusedPolarBear/intro-skipper run download $(gh -R ConfusedPolarBear/intro-skipper run list --json name,number,databaseId --jq '[.[]|select(.name=="Publish container")][0].databaseId')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - run: tar -xvf jellyfin-web*/dist.tar.gz -C root/usr/share/jellyfin/web
 
       - name: Build and push Docker image
         if: github.ref != 'refs/heads/test/ci'
