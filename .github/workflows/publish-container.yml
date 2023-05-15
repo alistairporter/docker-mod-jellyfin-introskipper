@@ -54,7 +54,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - run: tar -xvf jellyfin-web*/dist.tar.gz -C root/usr/share/jellyfin/web
+      - run: tar -xvf jellyfin-web*/dist.tar.gz --strip-components=1 -C root/usr/share/jellyfin/web
 
       - name: Build and push Docker image
         if: github.ref != 'refs/heads/test/ci'
